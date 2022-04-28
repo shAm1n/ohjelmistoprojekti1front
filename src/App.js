@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Navigaatio from './components/Navigaatio';
 import Etusivu from './components/Etusivu';
 import NaytaKysely from './components/NaytaKysely';
-import UusiKysely from './components/UusiKysely';
 import VastaaKyselyyn from './components/VastaaKyselyyn';
 
 const theme = createTheme({
@@ -14,10 +13,33 @@ const theme = createTheme({
 
 
 export default function App() {
-  const [ilmo, setIlmo] = useState('');
+  const [error, setError] = useState(null);
   const [lista, setLista] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const fetchUrl = async() => {
+  useEffect(() => {
+    fetch('https://kyselyohjelmistoprojekti.herokuapp.com/api/kyselyt', {
+    method: 'GET',
+    mode: 'no-cors',
+    /*headers: {
+      'access-control-allow-origin':'*',
+      'Content-Type': 'application/json; charset=UTF-8',
+    },*/
+    })
+    .then(response => response.json())
+    .then(
+      (result) => {
+      setLoading(false);
+      setLista(result);
+    },
+      (error) => {
+      setLoading(false);
+      setError(error);
+    }
+  )
+}, []);
+
+  /*const fetchUrl = async() => {
     try {
       const response = await fetch('https://kyselyohjelmistoprojekti.herokuapp.com/api/kyselyt');
       const json = await response.json();
@@ -28,7 +50,7 @@ export default function App() {
         setIlmo('Ei löytynyt!');
     }
   }
-  useEffect(() => {fetchUrl()}, []);
+  useEffect(() => {fetchUrl()}, []);*/
 
   return (
     <ThemeProvider theme={theme}>
@@ -36,10 +58,9 @@ export default function App() {
         <BrowserRouter>
         <Navigaatio/>
         <Routes>
-            <Route path='/' exact element={<Etusivu lista={lista}/>} />
-            <Route path='/uusi' element={<UusiKysely lista={lista}/>} />
-            <Route path='/nayta/:nimi' element={<NaytaKysely lista={lista}/>} />
-            <Route path='/vastaa/:id' element={<VastaaKyselyyn/>} />
+            <Route path='/' exact element={<Etusivu lista={lista} error={error} loading={loading}/>} />
+            <Route path='/nayta/:id' element={<NaytaKysely lista={lista}/>} />
+            <Route path='/vastaa/:id' element={<VastaaKyselyyn lista={lista}/>} />
           </Routes>
         </BrowserRouter>
     </ThemeProvider>

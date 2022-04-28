@@ -1,36 +1,34 @@
-import React, {useParams} from 'react-router-dom';
-import {Link} from 'react-router-dom';
+import React from 'react';
+import {Link, useParams} from 'react-router-dom';
 import {Box, List, ListItem, ListItemText, Button, Typography, Grid} from '@mui/material';
 
 export default function NaytaKysely(props) {
-    const {nimi} = useParams();
-
-    /*const makeList = ((kysymykset) => {
+    const {id} = useParams();
+    const makeList = ((kysymykset) => {
         return (
             <List>
-            {kysymykset.map((kysymys) => {
+            {kysymykset.map((kysy) => {
             return (
-                <ListItem key={kysymys}>
-                    <ListItemText><Typography>{kysymys}</Typography></ListItemText>
+                <ListItem key={kysy.kysymysid}>
+                    <ListItemText><Typography>{kysy.kysymyslaatikko}</Typography></ListItemText>
                 </ListItem>
             );
             })}
             </List>
         );
-    })*/
-    //{makeList(kysely.kysymykset)}
-    /**/
+    })
+
     return (
     <Box>
         {props.lista.map(kysely => {
-            if (kysely.kyselynNimi===nimi) {
+            if (kysely.kyselyId===id) {
             return (
             <Grid key={kysely.kyselyId}>
                 <Grid item>
                     <Typography>{kysely.kyselynNimi}</Typography>
                 </Grid>
                 <Grid item>
-                    <Typography>{kysely.kysymys}</Typography>
+                    {makeList(kysely.kysymykset)}
                 </Grid>
                 <Button variant='outlined' to={'/vastaa/'+kysely.kyselyId} component={Link}>Vastaa kyselyyn</Button>
             </Grid>

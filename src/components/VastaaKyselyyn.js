@@ -1,11 +1,51 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
-import {Box, AppBar, Toolbar, Typography, IconButton, Divider} from '@mui/material';
+import React, { useState }  from 'react';
+import {useParams} from 'react-router-dom';
+import {Box, FormGroup, FormControl, TextField, InputLabel, Button, Typography} from '@mui/material';
 
-export default function VastaaKyselyyn() {
+export default function VastaaKyselyyn(props) {
+    const {id} = useParams();
+    const [vastaus, setVastaus] = useState([]);
+
+    const muuta = (e) => {
+        setVastaus(e.target.value);
+    }
+
+    const lisaaVastaukset = (vs) => {
+        vs.preventDefault();
+        setVastaus([]);
+    }
+
+    const makeForm = ((kysymykset) => {
+        return (
+            <Box>
+            {kysymykset.map((kysy) => {
+            return (
+                <FormControl key={kysy.kysymysid}>
+                    <InputLabel htmlFor='kysy.vastaukset.vastaus'><Typography>{kysy.kysymyslaatikko}</Typography></InputLabel>
+                    <TextField name='kysy.vastaukset.vastaus' value={kysy.vastaukset.vastaus} onChange={(e) => muuta(e)} label='Vastaus' variant="outlined" focused/>
+                </FormControl>
+            );
+            })}
+            </Box>
+        );
+    })
+
     return (
-    <Box>
-        
+    <Box component='form' noValidate autoComplete='off' sx={{margin:2}}>
+        {props.lista.map(kysely => {
+            if (kysely.kyselyId===id) {
+            return (
+            <FormGroup sx={{width: 300}}>
+                {makeForm(kysely.kysymykset)}
+            </FormGroup>
+            );
+            } else {
+            return (
+                <Typography>Ei löydy!</Typography>
+            );
+        }})}
+        <Button variant='contained' onClick={lisaaVastaukset}>Valmis!</Button>
+        <Typography>{vastaus}</Typography>
     </Box>
     );
 }
