@@ -1,4 +1,4 @@
-import React/*, {useState, useEffect}*/ from 'react';
+import React, {useState, useEffect} from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,26 +14,12 @@ const theme = createTheme({
 
 
 export default function App() {
-  /*const [ilmo, setIlmo] = useState('');
+  const [ilmo, setIlmo] = useState('');
   const [lista, setLista] = useState([]);
-  */
 
-  const lista = [
-    {
-      kyselyId: 1,
-      kyselynNimi: "TestiKysely",
-      kysymykset: ["Toimiiko...", "Varmasti?"],
-    },
-    {
-      kyselyId: 2,
-      kyselynNimi: "Toinenkin Kysely",
-      kysymykset: ["Kokeillaan...", "Uudestaan"],
-    },
-  ];
-
-  /*const fetchUrl = async() => {
+  const fetchUrl = async() => {
     try {
-      const response = await fetch('');
+      const response = await fetch('https://kyselyohjelmistoprojekti.herokuapp.com/api/kyselyt');
       const json = await response.json();
       Object.keys(json).forEach(function(key) {
         setLista(json[key]);
@@ -43,7 +29,6 @@ export default function App() {
     }
   }
   useEffect(() => {fetchUrl()}, []);
-  */
 
   return (
     <ThemeProvider theme={theme}>
