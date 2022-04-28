@@ -1,4 +1,4 @@
-import React, {useParams} from 'react';
+import React, {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {Box, List, ListItem, ListItemText, Button, Typography, Grid} from '@mui/material';
 
