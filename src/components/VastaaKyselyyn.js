@@ -18,14 +18,12 @@ export default function VastaaKyselyyn(props) {
     const makeForm = ((kysymykset) => {
         return (
             <Box>
-            {kysymykset.map((kysy) => {
-            return (
+            {kysymykset.map((kysy) => 
                 <FormControl key={kysy.kysymysid}>
                     <InputLabel htmlFor='kysy.vastaukset.vastaus'><Typography>{kysy.kysymyslaatikko}</Typography></InputLabel>
                     <TextField name='kysy.vastaukset.vastaus' value={kysy.vastaukset.vastaus} onChange={(e) => muuta(e)} label='Vastaus' variant="outlined" focused/>
                 </FormControl>
-            );
-            })}
+            )}
             </Box>
         );
     })

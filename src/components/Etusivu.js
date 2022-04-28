@@ -11,14 +11,13 @@ export default function Etusivu(props) {
         return (
         <Box>
             <List>
-            {props.lista.map((kysely) => {
-                return (
+            {props.lista.map((kysely) => 
                 <ListItem key={kysely.kyselyId} button component={Link} to={'/nayta/' + kysely.kyselyId}>
                     <ListItemText>
                         <Typography>{kysely.kyselynNimi}</Typography>
                     </ListItemText>
                 </ListItem>
-            )})}
+            )}
             </List>
         </Box>
         );

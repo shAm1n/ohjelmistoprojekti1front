@@ -7,13 +7,11 @@ export default function NaytaKysely(props) {
     const makeList = ((kysymykset) => {
         return (
             <List>
-            {kysymykset.map((kysy) => {
-            return (
+            {kysymykset.map((kysy) => 
                 <ListItem key={kysy.kysymysid}>
                     <ListItemText><Typography>{kysy.kysymyslaatikko}</Typography></ListItemText>
                 </ListItem>
-            );
-            })}
+            )}
             </List>
         );
     })
@@ -35,8 +33,7 @@ export default function NaytaKysely(props) {
             );
         } else {
             return (
-                <Typography>Ei löydy!
-                </Typography>
+                <Typography>Ei löydy!</Typography>
             )
         }})}
     </Box>
