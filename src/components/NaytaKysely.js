@@ -17,7 +17,7 @@ export default function NaytaKysely(props) {
     })
 
     return (
-    <Box>
+    <Box sx={{margin:2}}>
         {props.lista.map(kysely => {
             if (kysely.kyselyId===Number(id)) {
             return (

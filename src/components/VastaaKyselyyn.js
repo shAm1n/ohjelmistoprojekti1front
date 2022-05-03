@@ -35,7 +35,7 @@ export default function VastaaKyselyyn(props) {
             return (
             <FormGroup sx={{width: 300}}>
                 {makeForm(kysely.kysymykset)}
-                <Button variant='contained' onClick={lisaaVastaukset}>Valmis!</Button>
+                <Button variant='outlined' onClick={lisaaVastaukset}>Valmis!</Button>
             </FormGroup>
             );
             } else {
