@@ -19,7 +19,7 @@ export default function NaytaKysely(props) {
     return (
     <Box>
         {props.lista.map(kysely => {
-            if (kysely.kyselyId===id) {
+            if (kysely.kyselyId===Number(id)) {
             return (
             <Grid key={kysely.kyselyId}>
                 <Grid item>
