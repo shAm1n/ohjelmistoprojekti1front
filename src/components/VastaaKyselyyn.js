@@ -20,8 +20,8 @@ export default function VastaaKyselyyn(props) {
             <Box>
             {kysymykset.map((kysy) => 
                 <FormControl key={kysy.kysymysid}>
-                    <InputLabel htmlFor='kysy.vastaukset.vastaus'><Typography>{kysy.kysymyslaatikko}</Typography></InputLabel>
-                    <TextField name='kysy.vastaukset.vastaus' value={kysy.vastaukset.vastaus} onChange={(e) => muuta(e)} label='Vastaus' variant="outlined" focused/>
+                    <InputLabel htmlFor='kysy.vastaukset.vastaus'>Vastaus</InputLabel>
+                    <TextField name='kysy.vastaukset.vastaus' value={kysy.vastaukset.vastaus} onChange={(e) => muuta(e)} label={kysy.kysymyslaatikko} variant="outlined" focused/>
                 </FormControl>
             )}
             </Box>
@@ -35,6 +35,7 @@ export default function VastaaKyselyyn(props) {
             return (
             <FormGroup sx={{width: 300}}>
                 {makeForm(kysely.kysymykset)}
+                <Button variant='contained' onClick={lisaaVastaukset}>Valmis!</Button>
             </FormGroup>
             );
             } else {
@@ -42,7 +43,6 @@ export default function VastaaKyselyyn(props) {
                 <Typography>Ei löydy!</Typography>
             );
         }})}
-        <Button variant='contained' onClick={lisaaVastaukset}>Valmis!</Button>
         <Typography>{vastaus}</Typography>
     </Box>
     );
