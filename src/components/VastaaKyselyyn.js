@@ -20,7 +20,7 @@ export default function VastaaKyselyyn(props) {
             <Box>
             {kysymykset.map((kysy) => 
                 <FormControl key={kysy.kysymysid} sx={{margin:2}}>
-                    <InputLabel htmlFor='kysy.vastaukset.vastaus'>Vastaus</InputLabel>
+                    <InputLabel htmlFor='kysy.vastaukset.vastaus'></InputLabel>
                     <TextField name='kysy.vastaukset.vastaus' value={kysy.vastaukset.vastaus} onChange={(e) => muuta(e)} label={kysy.kysymyslaatikko} variant="outlined" focused/>
                 </FormControl>
             )}
