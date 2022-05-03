@@ -31,7 +31,7 @@ export default function VastaaKyselyyn(props) {
     return (
     <Box component='form' noValidate autoComplete='off' sx={{margin:2}}>
         {props.lista.map(kysely => {
-            if (kysely.kyselyId===id) {
+            if (kysely.kyselyId===Number(id)) {
             return (
             <FormGroup sx={{width: 300}}>
                 {makeForm(kysely.kysymykset)}
