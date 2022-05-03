@@ -33,7 +33,7 @@ export default function NaytaKysely(props) {
             );
         } else {
             return (
-                <Typography>Ei löydy!</Typography>
+                <Typography></Typography>
             )
         }})}
     </Box>

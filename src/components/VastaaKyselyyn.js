@@ -40,7 +40,7 @@ export default function VastaaKyselyyn(props) {
             );
             } else {
             return (
-                <Typography>Ei löydy!</Typography>
+                <Typography></Typography>
             );
         }})}
         <Typography>{vastaus}</Typography>
