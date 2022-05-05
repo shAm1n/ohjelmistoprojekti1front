@@ -19,7 +19,7 @@ export default function VastaaKyselyyn(props) {
         return (
             <Box>
             {kysymykset.map((kysy) => 
-                <FormControl key={kysy.kysymysid} sx={{margin:2}}>
+                <FormControl key={kysy.kysymysid} sx={{margin:2, width: 400}}>
                     <InputLabel htmlFor='kysy.vastaukset.vastaus'></InputLabel>
                     <TextField name='kysy.vastaukset.vastaus' value={kysy.vastaukset.vastaus} onChange={(e) => muuta(e)} label={kysy.kysymyslaatikko} variant="outlined" focused/>
                 </FormControl>
@@ -33,7 +33,7 @@ export default function VastaaKyselyyn(props) {
         {props.lista.map(kysely => {
             if (kysely.kyselyId===Number(id)) {
             return (
-            <FormGroup sx={{width: 300}}>
+            <FormGroup sx={{width: 400}}>
                 {makeForm(kysely.kysymykset)}
                 <Button variant='outlined' onClick={lisaaVastaukset}>Valmis!</Button>
             </FormGroup>
