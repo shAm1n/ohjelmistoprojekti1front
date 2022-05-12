@@ -18,7 +18,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/kyselyt', {
+    fetch('http://ohjelmistoprojekti1kysely.herokuapp.com/api/kyselyt', {
     method: 'GET',
     /*headers: {
       'access-control-allow-origin':'*',
