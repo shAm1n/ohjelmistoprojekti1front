@@ -32,7 +32,7 @@ export default function App() {
       setLista(result);
     },
       (error) => {
-      setLoading(false);
+      setLoading(false);  
       setError(error);
     }
   )
