@@ -1,10 +1,10 @@
 import React, { useState, useEffect }  from 'react';
 import { useParams } from 'react-router-dom';
-import {Box, FormControl, TextField, InputLabel, Button, Typography, Alert} from '@mui/material';
+import {Box, FormControl, TextField, InputLabel, Button, Typography, Alert, FormLabel, Radio, RadioGroup, FormControlLabel} from '@mui/material';
 
 export default function VastaaKyselyyn(props) {
     const [error, setError] = useState(null);
-    const [viesti, setViesti] = useState('');
+    const [viesti, setViesti] = useState(null);
     const [loading, setLoading] = useState(true);
     const {id} = useParams();
     const [kysymykset, setKysymykset] = useState([]);
@@ -32,7 +32,7 @@ export default function VastaaKyselyyn(props) {
     }, [id])
 
     const muuta = (e, id) => {
-        setViesti('')
+        setViesti(null)
         setVastaus({
             vastaus : e.target.value,
             kysymys: {kysymysid : id},
@@ -57,6 +57,7 @@ export default function VastaaKyselyyn(props) {
             setViesti('Virhe tiedon lähetyksessä');
         }
     }
+    const radiot = [1, 2, 3, 4, 5];
 
     /*const makeForm = (() => {
         return (
@@ -72,13 +73,29 @@ export default function VastaaKyselyyn(props) {
     } else {
     return (
     <Box sx={{margin:2}}>
-        {kysymykset.map((kysy) =>
+        {kysymykset.map(kysy => {
+            if(kysy.tyyppi === "open") {
+                return (
                 <FormControl key={kysy.kysymysid} sx={{margin:2, width: 400}}>
-                <InputLabel htmlFor='kysy.vastaukset.vastaus'></InputLabel>
-                <TextField name='kysy.vastaukset.vastaus' data-key={kysy.kysymysid} value={kysy.vastaukset.vastaus} onChange={(e) => muuta(e, kysy.kysymysid)} label={kysy.kysymyslaatikko} variant="outlined" focused/>
-                <Button variant='outlined' onClick={lahetaVastaus}>Valmis!</Button>
+                    <InputLabel htmlFor='kysy.vastaukset.vastaus'></InputLabel>
+                    <TextField name='kysy.vastaukset.vastaus' value={kysy.vastaukset.vastaus} onChange={(e) => muuta(e, kysy.kysymysid)} label={kysy.kysymyslaatikko} variant="outlined" focused/>
+                <Button variant='outlined' onClick={lahetaVastaus}>Lähetä vastaus</Button>
                 </FormControl>
-        )}
+                );
+            } else if(kysy.tyyppi === "radio") {
+                return (
+                <FormControl key={kysy.kysymysid} sx={{margin:2, width: 400}}>
+                    <FormLabel id="kysy.vastaukset.vastaus">{kysy.kysymyslaatikko}</FormLabel>
+                    <RadioGroup aria-labelledby="kysy.vastaukset.vastaus" defaultValue="5" onChange={(e) => muuta(e, kysy.kysymysid)}>
+                        {radiot.map(nro =>
+                            <FormControlLabel key={nro} value={nro} control={<Radio />} label={nro}></FormControlLabel>
+                        )}
+                    </RadioGroup>
+                <Button variant='outlined' onClick={lahetaVastaus}>Lähetä vastaus</Button>
+                </FormControl>
+                );
+            }
+        })}
         <Alert>{viesti}</Alert>
         <Typography>{vastaus.vastaus}</Typography>
     </Box>

@@ -6,6 +6,7 @@ import Navigaatio from './components/Navigaatio';
 import Etusivu from './components/Etusivu';
 import NaytaKysely from './components/NaytaKysely';
 import VastaaKyselyyn from './components/VastaaKyselyyn';
+import NaytaTulokset from './components/NaytaTulokset';
 
 const theme = createTheme({
   /*tyylit*/
@@ -60,6 +61,7 @@ export default function App() {
             <Route path='/' exact element={<Etusivu lista={lista} error={error} loading={loading}/>} />
             <Route path='/nayta/:id' element={<NaytaKysely lista={lista}/>} />
             <Route path='/vastaa/:id' element={<VastaaKyselyyn lista={lista}/>} />
+            <Route path='/tulokset/:id' element={<NaytaTulokset lista={lista}/>} />
           </Routes>
         </BrowserRouter>
     </ThemeProvider>
