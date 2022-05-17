@@ -18,6 +18,7 @@ export default function App() {
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  //Fetch komento että saadaan yhteys apiin
   useEffect(() => {
     fetch('/api/kyselyt', {
     method: 'GET',
