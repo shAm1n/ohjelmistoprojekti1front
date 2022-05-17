@@ -29,6 +29,7 @@ export default function NaytaKysely(props) {
                     {makeList(kysely.kysymykset)}
                 </Grid>
                 <Button variant='outlined' to={'/vastaa/'+kysely.kyselyId} component={Link}>Vastaa kyselyyn</Button>
+                <Button variant='outlined' to={'/tulokset/'+kysely.kyselyId} component={Link}>Tutki vastauksia</Button>
             </Grid>
             );
         } else {
