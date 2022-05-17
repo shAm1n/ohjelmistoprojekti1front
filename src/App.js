@@ -18,7 +18,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/kyselyt', {
+    fetch('/kyselyt', {
     method: 'GET',
     /*headers: {
       'access-control-allow-origin':'*',
