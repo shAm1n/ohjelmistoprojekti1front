@@ -76,7 +76,7 @@ export default function VastaaKyselyyn(props) {
         {kysymykset.map(kysy => {
             if(kysy.tyyppi === "open") {
                 return (
-                <FormControl key={kysy.kysymysid} sx={{margin:2, width: 400}}>
+                <FormControl key={kysy.kysymysid} sx={{margin:2, width: 600}}>
                     <InputLabel htmlFor='kysy.vastaukset.vastaus'></InputLabel>
                     <TextField name='kysy.vastaukset.vastaus' value={kysy.vastaukset.vastaus} onChange={(e) => muuta(e, kysy.kysymysid)} label={kysy.kysymyslaatikko} variant="outlined" focused/>
                 <Button variant='outlined' onClick={lahetaVastaus}>Lähetä vastaus</Button>
@@ -84,7 +84,7 @@ export default function VastaaKyselyyn(props) {
                 );
             } else if(kysy.tyyppi === "radio") {
                 return (
-                <FormControl key={kysy.kysymysid} sx={{margin:2, width: 400}}>
+                <FormControl key={kysy.kysymysid} sx={{margin:2, width: 600}}>
                     <FormLabel id="kysy.vastaukset.vastaus">{kysy.kysymyslaatikko}</FormLabel>
                     <RadioGroup aria-labelledby="kysy.vastaukset.vastaus" defaultValue="5" onChange={(e) => muuta(e, kysy.kysymysid)}>
                         {radiot.map(nro =>
